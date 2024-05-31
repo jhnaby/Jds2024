@@ -1,4 +1,3 @@
----
 # Abstract
 
 We present a new technique called "t-SNE" that visualizes high-dimensional data by giving each datapoint a location in a two or three-dimensional map.  The technique is a variation of Stochastic Neighbor Embedding [@hinton:stochastic] that is much easier to optimize, and produces significantly better visualizations by reducing the tendency to crowd points together in the center of the map. t-SNE is better than existing techniques at creating a single map that reveals structure at many different scales. This is particularly important for high-dimensional data that lie on several different, but related, low-dimensional manifolds, such as images of objects from multiple classes seen from multiple viewpoints. For visualizing the structure of very large data sets, we show how t-SNE can use random walks on neighborhood graphs to allow the implicit structure of all the data to influence the way in which a subset of the data is displayed. We illustrate the performance of t-SNE on a wide variety of data sets and compare it with many other non-parametric visualization techniques, including Sammon mapping, Isomap, and Locally Linear Embedding. The visualization produced by t-SNE are significantly better than those produced by other techniques on almost all of the data sets.
@@ -227,7 +226,7 @@ The cost function parameter settings we employed in our experiments are listed i
 
 ## Results {#sec-results}
 
-```{python}
+```{r}
 #| label: fig-mnist
 #| fig-cap: "Visualizations of 6,000 handwritten digits from the MNIST dataset."
 #| fig-subcap: 
@@ -241,7 +240,7 @@ The cost function parameter settings we employed in our experiments are listed i
 ```
 
 
-```{python}
+```{r}
 #| label: fig-olivetti
 #| fig-cap: "Visualization of the Olivetti faces data set"
 #| fig-subcap: 
@@ -271,7 +270,7 @@ We start by choosing a desired number of neighbors and creating a neighborhood g
 The most obvious way to compute the random walk-based similarities $p_{j|i}$ is to explicitly perform the random walks on the neighborhood graph, which works very well in practice, given that one can easily perform one million random walks per second. Alternatively, @grady:random presents an analytical solution to compute the pairwise similarities $p_{j|i}$ that involves solving a sparse linear system. The analytical solution to compute the similarities $p_{j|i}$ is sketched in [Appendix -@sec-appendixb]. In preliminary experiments, we did not find significant differences between performing the random walks explicitly and the analytical solution. In the experiment we present below, we explicitly performed the random walks because this is computationally less expensive. However, for very large data sets in which the landmark points are very sparse, the analytical solution may be more appropriate.
 
 
-```{python}
+```{r}
 #| label: fig-random-walk-tsne
 #| fig-cap: "Visualization of 6,000 digits from the MNIST data set produced by the random walk version of t-SNE (employing all 60,000 digit images)."
 
